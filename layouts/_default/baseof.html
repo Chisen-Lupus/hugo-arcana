@@ -17,7 +17,13 @@
                         {{- with .Params.sidebar_left }}
                             <div class="col-{{ cond (eq $sidebar_count 1) 4 3 }} col-12-narrower">
                                 <div id="sidebar">
-                                    {{- partial (printf "sidebar/%s.html" .) $ }}
+                                    {{- $sidebarContent := $.Site.GetPage (printf "sidebar/%s" .) }}
+                                    {{- if $sidebarContent }}
+                                        <h2>{{ $sidebarContent.Title }}</h2>
+                                        <div>{{ $sidebarContent.Content }}</div>
+                                    {{- else }}
+                                        <p>Sidebar content not found.</p>
+                                    {{- end }}
                                 </div>
                             </div>
                         {{- end }}
@@ -35,7 +41,13 @@
                         {{- with .Params.sidebar_right }}
                             <div class="col-{{ cond (eq $sidebar_count 1) 4 3 }} col-12-narrower">
                                 <div id="sidebar">
-                                    {{- partial (printf "sidebar/%s.html" .) $ }}
+                                    {{- $sidebarContent := $.Site.GetPage (printf "sidebar/%s" .) }}
+                                    {{- if $sidebarContent }}
+                                        <h2>{{ $sidebarContent.Title }}</h2>
+                                        <div>{{ $sidebarContent.Content }}</div>
+                                    {{- else }}
+                                        <p>Sidebar content not found.</p>
+                                    {{- end }}
                                 </div>
                             </div>
                         {{- end }}
