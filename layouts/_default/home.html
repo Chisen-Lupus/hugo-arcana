@@ -9,17 +9,15 @@
         <div id="page-wrapper">
             {{- partial "header.html" . }}
 
-            <!-- Lookup homepage data in language data directory (e.g. data/en/homepage.yml).
-                 Defaults to data/homepage.yml if language specific data was not found. -->
-            {{ with index ( index .Site.Data .Site.Language.Lang | default .Site.Data ) (.Param "homepage_data" | default "homepage") }}
-                {{- if .banner.enable }}
-                    {{- partial "homepage/banner.html" .banner -}}
-                {{- end }}
-
-                {{- range .items }}
-                    {{- partial (printf "homepage/blocks/%s.html" .type) (dict "ctx" $ "item" .) }}
-                {{- end }}
-            {{ end }}
+            <section class="wrapper style1">
+                <div class="container">
+                    <div id="homepage-content">
+                        <h1>{{ .Title }}</h1>
+                        <div>{{ .Content }}</div>
+                    </div>
+                </div>
+            </section>
+            
 
             {{- partial "footer/footer.html" . -}}
         </div>
